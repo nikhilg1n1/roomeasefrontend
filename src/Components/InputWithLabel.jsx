@@ -18,8 +18,10 @@ export function InputWithLabel({label,placeholder ,type="text",options=[],regist
                         ))
                     }
                 </select>
-                {error && <p className="text-red-500 text-xs mt-1">{error.message}</p>}
-            </div>
+                {/* Always render the error container to prevent layout shift */}
+                <div className="min-h-[1.25rem]">
+                    {error && <p className="text-red-500 text-xs">{error.message}</p>}
+                </div>            </div>
         );
     }
     if (type === "checkbox") {
@@ -33,6 +35,10 @@ export function InputWithLabel({label,placeholder ,type="text",options=[],regist
                     placeholder={placeholder}
                     className={"w-5 h-5"}
                 />
+                {/* Always render the error container to prevent layout shift */}
+                <div className="min-h-[1.25rem]">
+                    {error && <p className="text-red-500 text-xs">{error.message}</p>}
+                </div>
             </div>
         );
     }
@@ -60,8 +66,10 @@ export function InputWithLabel({label,placeholder ,type="text",options=[],regist
           placeholder={placeholder}
           {...register(label,{required: `${label} is required`})}
       />
-        {error && <p className="text-red-500 text-xs mt-1">{error.message}</p>}
-
+        {/* Always render the error container to prevent layout shift */}
+        <div className="min-h-[1.25rem]">
+            {error && <p className="text-red-500 text-xs">{error.message}</p>}
+        </div>
     </div>
   )
 }

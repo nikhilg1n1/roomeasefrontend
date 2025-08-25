@@ -1,7 +1,9 @@
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import axios from "axios"
 import { Eye, EyeOff } from "lucide-react"
 import { useState } from "react";
+import googlelogo from "../assets/search.png"
 import {
   Card,
   CardContent,
@@ -12,6 +14,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Link } from "react-router-dom";
+import {useGoogleLogin} from "@react-oauth/google";
 
 
 export function LoginForm({
@@ -19,14 +22,31 @@ export function LoginForm({
   ...props
 }) {
   const [showPassword, setShowPassword] = useState(false)
+  // const loginWithGoogle = useGoogleLogin({
+  //   scope: 'openid profile email',  //ensures Google sends email & profile
+  //   onSuccess: async(tokenResponse)=>{
+  //     const userInfo = await axios.get(
+  //         "https://www.googleapis.com/oauth2/v3/userinfo",
+  //         {
+  //           headers: {Authorization: `Bearer ${tokenResponse.access_token}`}
+  //         }
+  //     );
+  //     console.log(userInfo.data);
+  //     },
+  //     onError: err => {console.log("Google Login Failed",err)}
+  // });
 
+  const handleLogin = () =>{
+    window.location.href="http://localhost:8080/oauth2/authorization/google"
+
+  };
   return (
     (<div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
         <CardHeader>
           <CardTitle className="text-2xl">Login</CardTitle>
           <CardDescription>
-            Enter your email below to login to your account
+            {/*Enter your email below to login to your account*/}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -55,11 +75,13 @@ export function LoginForm({
                 </button>
 
               </div>
-              <Button type="submit" className="w-full">
+              <Button type="button" className="w-full">
                 Login
               </Button>
-              <Button variant="outline" to={"/check"} className="w-full" >
-                Login with Google
+              <Button variant="submit"
+                      className="w-full bg-black gap-4 text-white"
+                      onClick={handleLogin}>
+                <img src={googlelogo} width={18} height={18}/>Sign in with Google
               </Button>
             </div>
             <div className="mt-4 text-center text-sm">

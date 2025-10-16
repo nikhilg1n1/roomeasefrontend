@@ -12,7 +12,6 @@ function Navbar ()  {
     const [isOpen, setIsOpen] = useState(false);
     const {user,loading,logout} = useContext(AuthContext)
     const [open , setOpen] = useState(false);
-    console.log("User from context:", user);
 
 
     if(loading) return <div>Loading...</div>
@@ -24,7 +23,7 @@ function Navbar ()  {
             {/* Desktop Menu */}
             <div className="hidden sm:flex items-center gap-10">
                 {user ? (
-                    <img src={user.picture} alt="profile" className="w-8 h-8 rounded-full" onClick={setOpen((prev)=>!prev)}/>
+                    <img src={user.picture} alt="profile" className={"w-8 h-8 rounded-full"}/>
                 ) : (
                     <div className="w-8 h-8 rounded-full bg-gray-500" />
                 )}

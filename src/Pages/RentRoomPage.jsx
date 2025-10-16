@@ -1,14 +1,20 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { Slider } from "@/Components/ui/slider.jsx";
 import PriceRangeSlider from "@/Components/ui/PriceRangeSlider.jsx";
 import SearchBar from "@/Components/SearchBar.jsx";
 import { Button } from "@/Components/ui/button";
+import api from "@/Constants/api.js";
 
 
 const RentRoom = () => {
 
     const [maxRent, setMaxRent] = useState(15000)
     const [minRent, setMinRent] = useState(4000)
+    // useEffect(() => {
+    //     api.get("/v1/rooms/check")
+    //
+    //
+    // }, []);
     return (
         <div className="min-h-screen bg-slate-200 pt-16">
             {/* Search Bar */}

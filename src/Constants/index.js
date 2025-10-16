@@ -69,17 +69,17 @@ export  const dataOfForm = [
         id: 1,
         header: "Room Details",
         fields: [
-            { label: "Title", type: "text" },
-            { label: "Description", type: "text" },
-            { label: "Rent" },
-            { label: "Security deposit" },
-            { label: "Available date", type: "date" },
-            { label: "Room type", type: "select", options: ["Single", "Shared", "1BHK"] },
-            { label: "Furnished type", type: "select", options: ["Furnished", "Semi-Furnished", "Unfurnished"] },
-            { label: "Beds", type: "number" },
-            { label: "Attached washroom", type: "select", options: ["Yes", "No"] },
-            { label: "For whom", type: "select", options: ["Boys", "Girls", "Family"] },
-            { label: "Balcony", type: "select", options: ["Yes", "No"] },
+            { label: "Title", type: "text", required:true },
+            { label: "Description", type: "text",required:false },
+            { label: "Rent" ,required:true},
+            { label: "Security deposit" , required:true},
+            { label: "Available date", type: "date" ,required:true },
+            { label: "Room type", type: "select", options: ["Single", "Shared", "1BHK"] ,required:true },
+            { label: "Furnished type", type: "select", options: ["Furnished", "Semi-Furnished", "Unfurnished"],required:true },
+            { label: "Beds", type: "number",required:true },
+            { label: "Attached washroom", type: "select", options: ["Yes", "No"],required:true },
+            { label: "For whom", type: "select", options: ["Boys", "Girls", "Family"],required:true },
+            { label: "Balcony", type: "select", options: ["Yes", "No"],required:true },
         ]
     },
     {
@@ -95,18 +95,18 @@ export  const dataOfForm = [
         id:3,
         header: "Amenities",
         fields: [
-            { label:"Wifi",type:"checkbox"},
-            {label:"Power backup",type:"checkbox"},
-            {label:"Parking",type:"checkbox"},
-            {label:"Geyser",type:"checkbox"},
-            {label:"Ac",type:"checkbox"},
-            {label:"Fridge",type:"checkbox"},
-            {label:"Washing machine",type:"checkbox"},
-            {label:"Drinking water",type:"checkbox"},
-            {label:"CCTV",type:"checkbox"},
-            {label:"24*7",type:"checkbox"},
-            {label:"Security",type:"checkbox"},
-            {label:"House Keeping",type:"checkbox"}
+            { label:"Wifi",type:"checkbox",required:false},
+            {label:"Power backup",type:"checkbox",required:false},
+            {label:"Parking",type:"checkbox",required:false},
+            {label:"Geyser",type:"checkbox",required:false},
+            {label:"Ac",type:"checkbox",required:false},
+            {label:"Fridge",type:"checkbox",required:false},
+            {label:"Washing machine",type:"checkbox",required:false},
+            {label:"Drinking water",type:"checkbox",required:false},
+            {label:"CCTV",type:"checkbox",required:false},
+            {label:"24*7",type:"checkbox",required:false},
+            {label:"Security",type:"checkbox",required:false},
+            {label:"House Keeping",type:"checkbox",required:false},
 
         ]
     },
@@ -114,21 +114,21 @@ export  const dataOfForm = [
         id:4,
         header:"Photos",
         fields:[
-            {label:"Room interior", type:"file",},
-            {label:"Bathroom",type:"file"},
-            {label:"Kitchen",type:"file"},
-            {label:"Outside",type:"file"}
+            {label:"Room interior", type:"file",required: true},
+            {label:"Bathroom",type:"file",required: true},
+            {label:"Kitchen",type:"file",required: true},
+            {label:"Outside",type:"file",required: true},
         ],
     },
     {
         id:5,
         header:"Rules",
         fields: [
-            {label: "Smoking",type:"select",options: ["Yes","No" ]},
-            {label: "Drinking",type:"select",options: ["Yes","No" ]},
-            {label: "Non-Veg",type:"select",options: ["Yes","No" ]},
-            {label: "Pets",type:"select",options: ["Yes","No" ]},
-            {label: "Visitors",type:"select",options: ["Yes","No" ]},
+            {label: "Smoking",type:"select",options: ["Yes","No" ],required:true},
+            {label: "Drinking",type:"select",options: ["Yes","No" ],required:true},
+            {label: "Non-Veg",type:"select",options: ["Yes","No" ],required:true},
+            {label: "Pets",type:"select",options: ["Yes","No" ],required:true},
+            {label: "Visitors",type:"select",options: ["Yes","No" ],required:true},
         ]
 
     },
@@ -136,9 +136,9 @@ export  const dataOfForm = [
         id:6,
         header:"Contact Information",
         fields: [
-            {label:"Phone number",type:"text"},
-            {label:"Email",type:"text"},
-            {label:"Alternative number",type:"text"}
+            {label:"Phone number",type:"text" ,required:true},
+            {label:"Email",type:"text",required:true},
+            {label:"Alternative number",type:"text",required:true},
         ]
     }
 

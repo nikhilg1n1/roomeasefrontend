@@ -39,6 +39,7 @@ export function LoginForm({
   const handleLogin = () =>{
     window.location.href="http://localhost:8080/oauth2/authorization/google"
 
+
   };
   return (
     (<div className={cn("flex flex-col gap-6", className)} {...props}>

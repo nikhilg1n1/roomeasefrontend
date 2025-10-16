@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { useState } from 'react';
 import { Button } from "@/Components/ui/button.jsx";
 import { Input } from '@/Components/ui/input';
@@ -7,9 +7,16 @@ import {dataOfForm, steps} from "../Constants/index";
 import SteponeForm from '@/Components/SteponeForm';
 import ProgressBar from "@/Components/ProgressBar.jsx";
 import NextButton from "@/Components/NextButton.jsx";
+import api from "../Constants/api.js"
 
 const ListRoom = () => {
     const [step, setStep] = useState(0); // Track current form step
+
+    useEffect(() => {
+        api.get("/v1/rooms/check")
+
+
+    }, []);
 
     return (
         <section className={"h-screen w-full bg-gray-200 pt-16"}>

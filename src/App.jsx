@@ -25,6 +25,7 @@ function App() {
 
                     <Route element={<AuthLayout/>}>
                         <Route path="/login" element={<LoginPage/>}/>
+                        <Route path="/logout" element={<LoginPage/>}/>
                     </Route>
                 </Routes>
             </Router>

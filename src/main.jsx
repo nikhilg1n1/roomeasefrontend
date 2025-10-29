@@ -7,10 +7,10 @@ import {GoogleOAuthProvider} from "@react-oauth/google";
 import {AuthContext, AuthProvider} from "@/Context/AuthContext.jsx";
 
 createRoot(document.getElementById('root')).render(
-  // <BrowserRouter>
-  //     <App />
-  // </BrowserRouter>
+  <BrowserRouter>
     <AuthProvider>
         <App/>
     </AuthProvider>
+  </BrowserRouter>
+
 );

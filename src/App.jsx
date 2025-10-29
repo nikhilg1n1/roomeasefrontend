@@ -10,17 +10,25 @@ import LoginPage from "./Pages/LoginPage.jsx";
 import ListRoom from "./Pages/ListRoom.jsx";
 import MainLayout from "@/Pages/MainLayout.jsx";
 import AuthLayout from "@/Pages/AuthLayout.jsx";
+import ProtectedRoutes from "@/Context/ProtectedRoutes.jsx";
 
 function App() {
 
     return (
         <>
-            <Router>
                 <Routes>
                     <Route element={<MainLayout/>}>
                         <Route path="/" element={<LandingPage/>}/>
-                        <Route path="/check" element={<ListRoom/>}/>
-                        <Route path="/rentroom" element={<RentRoomPage/>}/>
+                        <Route path="/check" element={
+                            <ProtectedRoutes>
+                                <ListRoom/>
+                            </ProtectedRoutes>
+                            }/>
+                        <Route path="/rentroom" element={
+                            <ProtectedRoutes>
+                                <RentRoomPage/>
+                            </ProtectedRoutes>
+                            }/>
                     </Route>
 
                     <Route element={<AuthLayout/>}>
@@ -28,7 +36,7 @@ function App() {
                         <Route path="/logout" element={<LoginPage/>}/>
                     </Route>
                 </Routes>
-            </Router>
+
 
         </>
     )

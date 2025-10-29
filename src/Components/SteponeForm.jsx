@@ -18,41 +18,105 @@ function SteponeForm() {
     const roomData = dataOfForm[step];
 
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         console.log("Form Data:", data);
-        const  allData = {...formDataState,...data};
+        const allData = {...formDataState, ...data};
         setFormDataState(allData); // or navigate to next step
 
-        if(step < dataOfForm.length-1) {
-            setStep(prev =>prev + 1 );
+        if (step < dataOfForm.length - 1) {
+            setStep(prev => prev + 1);
             return
         }
 
+        const amenities = {
+            wifi:allData.wifi  || false,
+            ac:allData.ac || false,
+            parking:allData.parking || false,
+            geyser:allData.geyser || false,
+            fridge:allData.fridge || false,
+            washingMachine:allData.washingMachine || false,
+            cctv:allData.cctv || false,
+            security:allData.security || false,
+            powerBackup : allData.powerBackup || false,
+            houseKeeping : allData.houseKeeping || false,
+            allTime : allData.allTime || false,
+            drinkingWater : allData.drinkingWater || false,
+        };
+
+        const roomData = {
+            title : allData.title,
+            description:allData.description,
+            rent:allData.rent,
+            securityDeposit:allData.securityDeposit,
+            availableDate: allData.availableDate,
+            address:allData.address,
+            city:allData.city,
+            landmark:allData.landmark,
+            phoneNumber:allData.phoneNumber,
+            alternateNumber:allData.alternateNumber,
+            furnishingType: allData.furnishingType,
+            roomType: allData.roomType,
+            occupacyType: allData.occupacyType,
+            attachedWashroom: allData.attachedWashroom === "true" || allData.attachedWashroom === true,
+            balcony: allData.balcony === "true" || allData.balcony === true,
+            beds: allData.beds,
+            email: allData.email,
+            roomInterior: undefined,
+            bathroom: undefined,
+            kitchen : undefined,
+            outside : undefined,
+            amenities: amenities,
+        };
+
         // Sending to backend
-        const  formData = new FormData();
+        const formData = new FormData();
 
-        Object.keys(allData).forEach((key) => {
-            const value = allData[key];
+        // Object.keys(allData).forEach((key) => {
+        //     const value = allData[key];
+        //
+        //     if(value instanceof  FileList){
+        //         Array.from(value).forEach((file) => formData.append(key, file));
+        //     }else if(Array.isArray(value)){
+        //         value.forEach((item) => {formData.append(key, item);});
+        //     }else{
+        //         formData.append(key, value);
+        //     }
+        // });
 
-            if(value instanceof  FileList){
-                Array.from(value).forEach((file) => formData.append(key, file));
-            }else if(Array.isArray(value)){
-                value.forEach((item) => {formData.append(key, item);});
-            }else{
-                formData.append(key, value);
+        const jsonBlob = new Blob([JSON.stringify(roomData)],{type: "application/json"});
+        formData.append("roomData", jsonBlob);
+
+        ["roomInterior","bathroom","kitchen","outside"].forEach((key) => {
+            if(allData[key] && allData[key].length > 0) {
+                Array.from(allData[key]).forEach((file) => {
+                    formData.append("image", file);
+                })
             }
+
         });
+        console.log("Total Image are " , formData.getAll("image").length)
 
-        axios.post("http://localhost:8080/v1/rooms",formData,{
-            headers:{"Content-Type":"multipart/form-data"}
-        })
-        .then(res =>{
-            console.log("Saved Successfully:"  ,res.data);
-        })
-            .catch(errors => {console.log("Error:" , errors)});
+        // const imageKey = [...(allData.roomInterior ||[]),
+        //                         ...(roomData.bathroom || []),
+        //                         ...(roomData.kitchen || []),
+        //                         ...(roomData.outside||[])];
+        //         imageKey.forEach((item) => {formData.append("image", item)});
+        // console.log("Total images are" , imageKey.length)
 
+        // if (allData.image && allData.image instanceof FileList && allData.image.length > 0) {
+        //     formData.append("image", allData.image[0]);
+        // }
 
+        try {
+            const res = await axios.post("http://localhost:8080/v1/saveRooms", formData, {
+                headers: {"Content-Type": "multipart/form-data"},
 
+                withCredentials: true
+            })
+            console.log("success :", res.data)
+        } catch (err) {
+            console.log(err)
+        }
     };
 
 
@@ -66,12 +130,12 @@ function SteponeForm() {
                         roomData.fields.map((field, index) => (
                             <InputWithLabel key={index}
                                             label={field.label}
-                                            id={field.id}
+                                            name={field.name}
                                             type={field.type}
                                             placeholder={field.placeholder?.[index] || `Enter ${field.label}`}
                                             options={field.options}
                                             register={register}
-                                            error={errors[field.label]}
+                                            error={errors[field.name]}
                                             required={field.required}
                             />
                         ))

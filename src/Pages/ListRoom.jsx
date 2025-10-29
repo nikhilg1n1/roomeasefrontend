@@ -12,11 +12,11 @@ import api from "../Constants/api.js"
 const ListRoom = () => {
     const [step, setStep] = useState(0); // Track current form step
 
-    useEffect(() => {
-        api.get("/v1/rooms/check")
-
-
-    }, []);
+    // useEffect(() => {
+    //     api.get("/v1/rooms/check")
+    //
+    //
+    // }, []);
 
     return (
         <section className={"h-screen w-full bg-gray-200 pt-16"}>

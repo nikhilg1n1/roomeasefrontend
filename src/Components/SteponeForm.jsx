@@ -7,10 +7,11 @@ import axios from 'axios'
 
 import React, {useState} from "react";
 import {useForm} from "react-hook-form";
+import PreviousButton from "./PreviousButton";
 
 
-function SteponeForm({step,setStep}) {
-    const [formDataState, setFormDataState] = useState({});
+function SteponeForm({step,setStep,formDataState,setFormDataState}) {
+    // const [formDataState, setFormDataState] = useState({});
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
@@ -143,7 +144,14 @@ function SteponeForm({step,setStep}) {
                 {/*<div>*/}
                 {/*    <Button variant={"default"}>Next</Button>*/}
                 {/*</div>*/}
-                <NextButton step={step} setStep={setStep} totalSteps={dataOfForm.length}/>
+                <div className="flex gap-96">
+                    {
+                        step === 0 ? "" :<PreviousButton step={step} setStep={setStep}></PreviousButton>
+
+                    }
+                    <NextButton step={step} setStep={setStep} totalSteps={dataOfForm.length}/>
+                </div>
+                
 
             </div>
         </form>

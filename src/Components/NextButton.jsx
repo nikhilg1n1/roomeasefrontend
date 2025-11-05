@@ -4,6 +4,7 @@ function NextButton({step,setStep,totalSteps}) {
 
     return (
         <Button variant="default"
+        
         onClick={() =>{
                 setStep(step);
         }}

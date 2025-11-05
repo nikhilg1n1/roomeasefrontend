@@ -3,18 +3,49 @@ import { Slider } from "@/Components/ui/slider.jsx";
 import PriceRangeSlider from "@/Components/ui/PriceRangeSlider.jsx";
 import SearchBar from "@/Components/SearchBar.jsx";
 import { Button } from "@/Components/ui/button";
+import {Base_Url} from "@/Constants/api.js";
 import api from "@/Constants/api.js";
+import { tooggleValue } from "@/Utilities/Utility";
+
 
 
 const RentRoom = () => {
-
+    const [roomType, setRoomType] = useState([])
+    const [occupacy,setOccupacyType]=useState([])
     const [maxRent, setMaxRent] = useState(15000)
     const [minRent, setMinRent] = useState(4000)
-    // useEffect(() => {
-    //     api.get("/v1/rooms/check")
-    //
-    //
-    // }, []);
+    const [rooms, setRoom] = useState([])
+    useEffect(() => {
+    api.get("/v1/rooms")
+      .then((res) => {
+        console.log("Rooms => ", res.data);
+        setRoom(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+    
+        const filterRooms=() =>{
+            const payload = {
+                maxRent,
+                minRent,
+                roomType,
+                occupacy
+            };
+            console.log("Payload is ->" ,payload);
+            
+         api.post("/v1/filter",payload)
+        .then((res) =>{
+            console.log("Filterd Room =>" ,res.data);
+            setRoom(Array.isArray(res.data) ? res.data : []);
+            // console.log("Filterd room :" ,rooms);
+            
+            
+        })
+        .catch((err) => console.log(err));
+        
+    }
+    
     return (
         <div className="min-h-screen bg-slate-200 pt-16">
             {/* Search Bar */}
@@ -33,13 +64,22 @@ const RentRoom = () => {
                     <div>
                         <h2 className="text-lg text-black font-normal mb-2">Room type</h2>
                         <label className="block mb-2">
-                            <input type="checkbox" className="mr-2" /> Single
+                            <input type="checkbox" 
+                                checked={roomType.includes("single")}
+                                onChange={()=>setRoomType(tooggleValue("single",roomType))}
+                                className="mr-2" /> Single
                         </label>
                         <label className="block mb-2">
-                            <input type="checkbox" className="mr-2" /> Shared
+                            <input type="checkbox" 
+                                checked={roomType.includes("shared")}
+                                onChange={()=>setRoomType(tooggleValue("shared",roomType))}
+                                className="mr-2" /> Shared
                         </label>
                         <label className="block mb-2">
-                            <input type="checkbox" className="mr-2" /> 1BHK
+                            <input type="checkbox" 
+                                checked={roomType.includes("1BHK")}
+                                onChange={()=>setRoomType(tooggleValue("1BHK",roomType))}
+                                className="mr-2" /> 1BHK
                         </label>
                     </div>
 
@@ -50,13 +90,22 @@ const RentRoom = () => {
                     <div>
                         <h2 className="text-lg text-black font-normal mb-2">Looking for</h2>
                         <label className="block mb-2">
-                            <input type="checkbox" className="mr-2" /> Student
+                            <input type="checkbox"
+                                checked={occupacy.includes("Boys")}
+                                onChange={()=>setOccupacyType(tooggleValue("Boys",occupacy))}
+                                className="mr-2" /> Boys
                         </label>
                         <label className="block mb-2">
-                            <input type="checkbox" className="mr-2" /> Working Professional
+                            <input type="checkbox"
+                                checked={occupacy.includes("Girls")}
+                                onChange={()=>setOccupacyType(tooggleValue("Girls",occupacy))}
+                                className="mr-2" /> Girls
                         </label>
                         <label className="block mb-2">
-                            <input type="checkbox" className="mr-2" /> Family
+                            <input type="checkbox"
+                                checked={occupacy.includes("Family")}
+                                onChange={()=>setOccupacyType(tooggleValue("Family",occupacy))} 
+                                className="mr-2" /> Family
                         </label>
                     </div>
 
@@ -69,25 +118,66 @@ const RentRoom = () => {
                             <PriceRangeSlider
                                 minRent={minRent}
                                 maxRent={maxRent}
-                                onMinChange={setMinRent}
-                                onMaxChange={setMaxRent}
+                                onMinChange={(value) =>setMinRent(value)}
+                                onMaxChange={(value)=>setMaxRent(value)}
                             />
                         </label>
                     </div>
+                    <button onClick={filterRooms} className="mt-4 w-full">
+                        Apply filter
+                    </button>
                 </aside>
 
                 {/* Room Listings */}
                 <section className="flex-1 mt-24 px-4 overflow-y-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {[...Array(14)].map((_, item) => (
-                        <div key={item} className="bg-white rounded shadow p-4">
-                            <div className="h-40 bg-gray-300 rounded mb-4"></div>
-                            <h3 className="text-lg font-semibold">Spacious Room in Andheri</h3>
-                            <p className="text-sm text-gray-600">₹8000/month - Andheri East, Mumbai</p>
-                            <Button varient={"default"} className="mt-4 text-white px-4 py-2 rounded">
-                                View Details
-                            </Button>
-                        </div>
-                    ))}
+                    { rooms.length===0 && (
+                        <p>No Rooms Found</p>
+                    )}
+
+                    {/*    [...Array(14)].map((_, item) => (*/}
+                    {/*    <div key={item} className="bg-white rounded shadow p-4">*/}
+                    {/*        <div className="h-40 bg-gray-300 rounded mb-4"></div>*/}
+                    {/*        <h3 className="text-lg font-semibold">Spacious Room in Andheri</h3>*/}
+                    {/*        <p className="text-sm text-gray-600">₹8000/month - Andheri East, Mumbai</p>*/}
+                    {/*        <Button varient={"default"} className="mt-4 text-white px-4 py-2 rounded">*/}
+                    {/*            View Details*/}
+                    {/*        </Button>*/}
+                    {/*    </div>*/}
+                    {/*))}*/}
+
+                    {
+                        rooms.map((room) => (
+                            <div key={room.roomId} className="bg-white h-80 rounded shadow p-4">
+                                {/*//image*/}
+                                <div className={"h-40 rounded mb-4 overflow-hidden bg-gray-200"}>
+                                    {
+                                            
+                                        room.imageId  ? (
+                                            <img
+                                            src={`${Base_Url}/v1/image/${room.imageId}`}
+                                            alt={room.title}
+                                            className="object-cover h-full w-full"/>
+                                        ):(
+                                            <div className={"w-full h-full bg-gray-300"}>
+
+                                            </div>
+                                        )}
+                                    
+
+                                </div>
+                                <h3 className={"text-lg font-semibold text-black"}>{room.title}</h3>
+                                <p className = "text-sm text-gray-400">
+                                    ₹{room.rent}/month - {room.city}
+                                </p>
+
+                                <Button className="mt-4 text-white py-2 px-4 rounded">
+                                        View Details
+                                </Button>
+
+
+                            </div>
+                        ))
+                    }
                 </section>
             </div>
 

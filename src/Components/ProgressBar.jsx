@@ -12,7 +12,7 @@ function ProgressBar({step,totalStep}) {
                     {/* Circle */}
                     <div
                         className={`rounded-full w-14 h-14 flex items-center justify-center z-10 
-          ${step === i ? 'bg-blue-600 text-white' : step > i ? 'bg-green-500 text-white' : 'bg-gray-300'}
+          ${step === i ? 'bg-blue-600 text-white' : step > i ? 'bg-green-600 text-white' : 'bg-gray-300'}
         `}
                     >
                         {step > i ? '✓' : i+1}
@@ -23,7 +23,7 @@ function ProgressBar({step,totalStep}) {
                     {i < steps.length-1 && (
                         <div className="absolute top-6 left-1/2 flex w-full h-1 bg-gray-300 z-0">
                             <div
-                                className={`h-full transition-all duration-300 ${step > i ? 'bg-green-500' : ''}`}
+                                className={`h-full transition-all duration-300 ${step > i ? 'bg-green-600' : ''}`}
                                 style={{ width: step > i ? '100%' : '0%'}}
                             >
                             </div>

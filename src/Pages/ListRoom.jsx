@@ -50,7 +50,7 @@ const ListRoom = () => {
 
         {/*            ))}*/}
         {/*        </div>*/}
-                <ProgressBar step={step} setStep={steps.length} />
+                <ProgressBar step={step} totalStep={steps.length} />
                 <SteponeForm step={step} setStep={setStep} />
 
             </div>

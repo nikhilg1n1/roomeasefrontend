@@ -1,5 +1,8 @@
 import axios from 'axios'
 
+export const Base_Url = import.meta.env.REACT_APP_API || "http://localhost:8080"
+
+
 const api = axios.create({
     baseURL: import.meta.env.REACT_APP_API || "http://localhost:8080",
     withCredentials: true

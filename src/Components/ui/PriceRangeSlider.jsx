@@ -1,9 +1,7 @@
 import * as React from "react"
 import { Slider } from "@/components/ui/slider"
 
-const PriceRangeSlider = () => {
-    const [minRent, setMinRent] = React.useState([5000])
-    const [maxRent, setMaxRent] = React.useState([15000])
+const PriceRangeSlider = ({minRent, maxRent,onMinChange,onMaxChange}) => {
 
     return (
         <div>
@@ -12,13 +10,13 @@ const PriceRangeSlider = () => {
             <div className={"mb-8"}>
                 <p className="mb-2">Minimum</p>
 
-                <div className="mb-2 text-sm text-gray-700 font-medium">₹{minRent[0].toLocaleString()}</div>
+                <div className="mb-2 text-sm text-gray-700 font-medium">₹{minRent.toLocaleString()}</div>
                 <Slider
-                    defaultValue={minRent}
+                    defaultValue={[minRent]}
                     min={5000}
                     max={20000}
                     step={500}
-                    onValueChange={(val) => setMinRent(val)}
+                    onValueChange={(val) => onMinChange(val[0])}
                     className="w-1/2"
                 />
             </div>
@@ -27,13 +25,13 @@ const PriceRangeSlider = () => {
             <div>
                 <p className="mb-2">Maximum</p>
 
-                <div className="mb-2 text-sm text-gray-700 font-medium">₹{maxRent[0].toLocaleString()}</div>
+                <div className="mb-2 text-sm text-gray-700 font-medium">₹{maxRent.toLocaleString()}</div>
                 <Slider
-                    defaultValue={maxRent}
+                    defaultValue={[maxRent]}
                     min={15000}
                     max={30000}
                     step={500}
-                    onValueChange={(val) => setMaxRent(val)}
+                    onValueChange={(val) => onMaxChange(val[0])}
                     className="w-1/2"
                 />
             </div>

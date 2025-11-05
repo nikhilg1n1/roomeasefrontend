@@ -9,8 +9,7 @@ import React, {useState} from "react";
 import {useForm} from "react-hook-form";
 
 
-function SteponeForm() {
-    const [step, setStep] = useState(0);
+function SteponeForm({step,setStep}) {
     const [formDataState, setFormDataState] = useState({});
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();

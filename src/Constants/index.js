@@ -53,12 +53,9 @@ export const steps=[
         id:4,
         text:"Photos"
     },
+    
     {
         id:5,
-        text:"Rules"
-    },
-    {
-        id:6,
         text:"Contact Information"
     }
 
@@ -118,26 +115,14 @@ export  const dataOfForm = [
         id:4,
         header:"Photos",
         fields:[
-            {name:"roomInterior",label:"Room interior", type:"file",required: true},
-            {name:"bathroom",label:"Bathroom",type:"file",required: true},
-            {name:"kitchen",label:"Kitchen",type:"file",required: true},
-            {name:"outside",label:"Outside",type:"file",required: true},
+            {name:"roomInterior",label:"Room interior", type:"file",required: false},
+            {name:"bathroom",label:"Bathroom",type:"file",required: false},
+            {name:"kitchen",label:"Kitchen",type:"file",required: false},
+            {name:"outside",label:"Outside",type:"file",required: false},
         ],
     },
     {
         id:5,
-        header:"Rules",
-        fields: [
-            {name:"smoking",label: "Smoking",type:"select",options: ["Yes","No" ],required:true},
-            {name:"drinking",label: "Drinking",type:"select",options: ["Yes","No" ],required:true},
-            {name:"nonVeg",label: "Non-Veg",type:"select",options: ["Yes","No" ],required:true},
-            {name:"pets",label: "Pets",type:"select",options: ["Yes","No" ],required:true},
-            {name:"visitors",label: "Visitors",type:"select",options: ["Yes","No" ],required:true},
-        ]
-
-    },
-    {
-        id:6,
         header:"Contact Information",
         fields: [
             {name:"phoneNumber",label:"Phone number",type:"text" ,required:true},

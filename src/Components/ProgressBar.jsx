@@ -21,10 +21,10 @@ function ProgressBar({step,totalStep}) {
 
                     {/* Line between steps (skip after last) */}
                     {i < steps.length-1 && (
-                        <div className="absolute top-5 left-1/2 flex w-full h-1 bg-gray-300 z-0">
+                        <div className="absolute top-6 left-1/2 flex w-full h-1 bg-gray-300 z-0">
                             <div
-                                className={`h-full transition-all duration-300 ${step > s ? 'bg-blue-500' : ''}`}
-                                style={{ width: `${percent}%`}}
+                                className={`h-full transition-all duration-300 ${step > i ? 'bg-green-500' : ''}`}
+                                style={{ width: step > i ? '100%' : '0%'}}
                             >
                             </div>
                         </div>

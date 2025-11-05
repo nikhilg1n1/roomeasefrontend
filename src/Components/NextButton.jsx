@@ -3,7 +3,11 @@ import {Button} from "@/Components/ui/button.jsx";
 function NextButton({step,setStep,totalSteps}) {
 
     return (
-        <Button variant="default">
+        <Button variant="default"
+        onClick={() =>{
+                setStep(step);
+        }}
+        >
             {step === totalSteps - 1 ? "Submit" : "Next"}
         </Button>
     );

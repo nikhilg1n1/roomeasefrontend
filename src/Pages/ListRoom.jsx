@@ -11,6 +11,8 @@ import api from "../Constants/api.js"
 
 const ListRoom = () => {
     const [step, setStep] = useState(0); // Track current form step
+    const [formDataState, setFormDataState] = useState({});
+
 
     // useEffect(() => {
     //     api.get("/v1/rooms/check")
@@ -51,7 +53,7 @@ const ListRoom = () => {
         {/*            ))}*/}
         {/*        </div>*/}
                 <ProgressBar step={step} totalStep={steps.length} />
-                <SteponeForm step={step} setStep={setStep} />
+                <SteponeForm step={step} setStep={setStep} formDataState={formDataState} setFormDataState={setFormDataState} />
 
             </div>
 

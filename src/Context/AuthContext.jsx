@@ -29,11 +29,11 @@ export const AuthProvider = ({ children }) => {
         // )
 
     useEffect(() => {
-        api.get("/v1/users/info")
+        api.get(`/v1/users/info`)
             .then((res) => {
                 const data = res.data;
+                console.log("USer is Logged in " , res.data)
                 if(data.authenticated){
-                    console.log("USer is Logged in ")
                     setUser(data)
                 }else{
                     setUser(null)
@@ -54,7 +54,7 @@ export const AuthProvider = ({ children }) => {
         };
 
         const logout = () => {
-            api.post("/v1/users/logout")
+            api.get(`/v1/users/logout/${user.id}`)
                 .then(()=>{setUser(null)})
         }
         return (

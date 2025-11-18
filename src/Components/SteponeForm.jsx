@@ -3,6 +3,7 @@ import {dataOfForm} from '../Constants/index.js'
 import {Button} from "@/Components/ui/button.jsx";
 import NextButton from "@/Components/NextButton.jsx";
 import axios from 'axios'
+import {useNavigate} from 'react-router-dom'
 
 
 import React, {useState} from "react";
@@ -16,6 +17,7 @@ function SteponeForm({step,setStep,formDataState,setFormDataState}) {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
     const roomData = dataOfForm[step];
+    const navigate  = useNavigate();
 
 
     const onSubmit = async (data) => {
@@ -61,6 +63,7 @@ function SteponeForm({step,setStep,formDataState,setFormDataState}) {
             balcony: allData.balcony === "true" || allData.balcony === true,
             beds: allData.beds,
             email: allData.email,
+            name:allData.name,
             roomInterior: undefined,
             bathroom: undefined,
             kitchen : undefined,
@@ -111,8 +114,10 @@ function SteponeForm({step,setStep,formDataState,setFormDataState}) {
             const res = await axios.post("http://localhost:8080/v1/saveRooms", formData, {
                 headers: {"Content-Type": "multipart/form-data"},
 
-                withCredentials: true
+                withCredentials: true,
+
             })
+            navigate("/success")
             console.log("success :", res.data)
         } catch (err) {
             console.log(err)

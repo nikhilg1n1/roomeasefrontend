@@ -123,9 +123,22 @@ export  const dataOfForm = [
     },
     {
         id:5,
+        header:"Rules",
+        fields: [
+            {name:"smoking",label: "Smoking",type:"select",options: ["Yes","No" ],required:true},
+            {name:"drinking",label: "Drinking",type:"select",options: ["Yes","No" ],required:true},
+            {name:"nonVeg",label: "Non-Veg",type:"select",options: ["Yes","No" ],required:true},
+            {name:"pets",label: "Pets",type:"select",options: ["Yes","No" ],required:true},
+            {name:"visitors",label: "Visitors",type:"select",options: ["Yes","No" ],required:true},
+        ]
+
+    },
+    {
+        id:6,
         header:"Contact Information",
         fields: [
             {name:"phoneNumber",label:"Phone number",type:"text" ,required:true},
+            {name:"name",label:"Enter full name",type:"text" ,required:true},
             {name:"email",label:"Email",type:"text",required:true},
             {name:"alternateNumber",label:"Alternative number",type:"text",required:true},
         ]

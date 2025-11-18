@@ -6,6 +6,7 @@ import { Button } from "@/Components/ui/button";
 import {Base_Url} from "@/Constants/api.js";
 import api from "@/Constants/api.js";
 import { tooggleValue } from "@/Utilities/Utility";
+import roomDescription from "@/Pages/RoomDescription.jsx";
 
 
 
@@ -23,6 +24,12 @@ const RentRoom = () => {
       })
       .catch((err) => console.log(err));
   }, []);
+
+    const roomDescriptions = (roomId) =>{api.get(`/v1/description/${roomId}`)
+        .then((res)=>{
+            console.log(res);
+        })}
+
 
     
         const filterRooms=() =>{
@@ -123,9 +130,9 @@ const RentRoom = () => {
                             />
                         </label>
                     </div>
-                    <button onClick={filterRooms} className="mt-4 w-full">
+                    <Button variant={"default"} onClick={filterRooms} className="mt-4 w-full">
                         Apply filter
-                    </button>
+                    </Button>
                 </aside>
 
                 {/* Room Listings */}
@@ -170,7 +177,7 @@ const RentRoom = () => {
                                     ₹{room.rent}/month - {room.city}
                                 </p>
 
-                                <Button className="mt-4 text-white py-2 px-4 rounded">
+                                <Button onClick={()=>roomDescriptions(room.roomId)} className="mt-4 text-white py-2 px-4 rounded"  variant={"default"} to={`/description/${room.roomId}`}>
                                         View Details
                                 </Button>
 

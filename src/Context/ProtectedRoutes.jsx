@@ -8,7 +8,7 @@ function ProtectedRoutes({children}) {
 
     if(loading)<p>loading...</p>
 
-    if(!user) return <Navigate to="/login" replace/>
+    if(!user) return <Navigate to=""/>
     return children;
 }
 

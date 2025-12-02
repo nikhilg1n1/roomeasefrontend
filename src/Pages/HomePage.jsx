@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import heroImage from '../assets/heroImage.jpg'
 import SearchBar from "../Components/SearchBar.jsx";
 import IconText from "../Components/IconText.jsx";
@@ -8,10 +8,12 @@ import TrustIcon from '../assets/Trust.svg'
 import Navbar from "../Components/Navbar.jsx";
 import {Button} from "../Components/ui/button.jsx";
 import {Link} from "react-router-dom";
+import api from "@/Constants/api.js";
 
 
 
 const HomePage = () => {
+
     return (
         <section className={"min-h-screen w-full"}>
             <div className={"w-full h-[600px] flex items-center justify-center" }>

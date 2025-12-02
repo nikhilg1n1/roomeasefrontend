@@ -1,21 +1,28 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
+import {useParams} from "react-router-dom";
+
 import { Slider } from "@/Components/ui/slider.jsx";
 import PriceRangeSlider from "@/Components/ui/PriceRangeSlider.jsx";
 import SearchBar from "@/Components/SearchBar.jsx";
 import { Button } from "@/Components/ui/button";
 import {Base_Url} from "@/Constants/api.js";
-import api from "@/Constants/api.js";
+// import api from "@/Constants/api.js";
 import { tooggleValue } from "@/Utilities/Utility";
 import roomDescription from "@/Pages/RoomDescription.jsx";
+import {AuthContext} from "@/Context/AuthContext.jsx";
 
 
 
 const RentRoom = () => {
     const [roomType, setRoomType] = useState([])
+    const { api } = useContext(AuthContext);
     const [occupacy,setOccupacyType]=useState([])
+    const [imageUrl, setImageUrl]=useState(null)
     const [maxRent, setMaxRent] = useState(15000)
     const [minRent, setMinRent] = useState(4000)
     const [rooms, setRoom] = useState([])
+    // const {imageId} = useParams()
+
     useEffect(() => {
     api.get("/v1/rooms")
       .then((res) => {
@@ -24,6 +31,17 @@ const RentRoom = () => {
       })
       .catch((err) => console.log(err));
   }, []);
+
+    // useEffect(() => {
+    //     api.get(`/v1/image/${rooms.imageId}`, {responseType: "blob"})
+    //         .then((res) => {
+    //             setImageUrl(URL.createObjectURL(res.data));
+    //
+    //         })
+    // }, []);
+    //
+
+
 
     const roomDescriptions = (roomId) =>{api.get(`/v1/description/${roomId}`)
         .then((res)=>{
@@ -162,6 +180,7 @@ const RentRoom = () => {
                                         room.imageId  ? (
                                             <img
                                             src={`${Base_Url}/v1/image/${room.imageId}`}
+                                            // src={imageUrl}
                                             alt={room.title}
                                             className="object-cover h-full w-full"/>
                                         ):(

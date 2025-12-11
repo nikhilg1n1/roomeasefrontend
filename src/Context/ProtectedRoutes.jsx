@@ -4,11 +4,13 @@ import {Navigate} from "react-router-dom"
 
 
 function ProtectedRoutes({children}) {
-    const {user,loading} = useContext(AuthContext);
+    const {user,loading,authenticated} = useContext(AuthContext);
 
-    if(loading)<p>loading...</p>
+    if(loading) return <p>loading...</p>
+    
 
-    if(!user) return <Navigate to=""/>
+    // if(!user) return <Navigate to="/login"/>
+    if(!authenticated || !user) return <Navigate to = "/login"/>
     return children;
 }
 

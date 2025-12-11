@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useContext, useEffect} from 'react'
 import { useState } from 'react';
 import { Button } from "@/Components/ui/button.jsx";
 import { Input } from '@/Components/ui/input';
@@ -7,17 +7,19 @@ import {dataOfForm, steps} from "../Constants/index";
 import SteponeForm from '@/Components/SteponeForm';
 import ProgressBar from "@/Components/ProgressBar.jsx";
 import NextButton from "@/Components/NextButton.jsx";
-import api from "../Constants/api.js"
+import { AuthContext } from '@/Context/AuthContext';
+// import api from "../Constants/api.js"
 
 const ListRoom = () => {
+    const {api} = useContext(AuthContext)
     const [step, setStep] = useState(0); // Track current form step
     const [formDataState, setFormDataState] = useState({});
 
 
     // useEffect(() => {
     //     api.get("/v1/rooms/check")
-    //
-    //
+    
+    
     // }, []);
 
     return (

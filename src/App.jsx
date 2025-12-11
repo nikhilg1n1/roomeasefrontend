@@ -6,6 +6,7 @@ import React from "react";
 import RentRoomPage from "./Pages/RentRoomPage.jsx";
 import Navbar from "@/Components/Navbar.jsx";
 import {LoginForm} from "./Components/login-form.jsx";
+import SignInPage from "./Pages/SignInpage.jsx";
 import LoginPage from "./Pages/LoginPage.jsx";
 import ListRoom from "./Pages/ListRoom.jsx";
 import MainLayout from "@/Pages/MainLayout.jsx";
@@ -38,6 +39,7 @@ function App() {
                         <Route path="/rentroom" element={
                             <ProtectedRoutes>
                                 <RentRoomPage/>
+                        
                             </ProtectedRoutes>
                             }/>
                     </Route>
@@ -49,7 +51,7 @@ function App() {
 
                     <Route element={<AuthLayout/>}>
                         <Route path="/login" element={<LoginPage/>}/>
-                        <Route path="/logout/:id" element={<LoginPage/>}/>
+                        <Route path="/signup" element={<SignInPage/>}/>
                     </Route>
                 </Routes>
 

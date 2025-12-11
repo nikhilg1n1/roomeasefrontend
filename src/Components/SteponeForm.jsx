@@ -6,15 +6,17 @@ import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
 
 
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import {useForm} from "react-hook-form";
 import PreviousButton from "./PreviousButton";
+import { AuthContext } from "@/Context/AuthContext";
 
 
 function SteponeForm({step,setStep,formDataState,setFormDataState}) {
     // const [formDataState, setFormDataState] = useState({});
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const {api} = useContext(AuthContext)
 
     const roomData = dataOfForm[step];
     const navigate  = useNavigate();
@@ -111,7 +113,7 @@ function SteponeForm({step,setStep,formDataState,setFormDataState}) {
         // }
 
         try {
-            const res = await axios.post("http://localhost:8080/v1/saveRooms", formData, {
+            const res = await api.post("http://localhost:8080/v1/saveRooms", formData, {
                 headers: {"Content-Type": "multipart/form-data"},
 
                 withCredentials: true,

@@ -7,7 +7,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
-    const[authenticated, setAuthenticated] = useState(false);
+    const [authenticated, setAuthenticated] = useState(false);
     const [loading, setLoading] = useState(true);
 
     const api = useRef(
@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
 
     //Attach token to every request
     useEffect(() => {
-        const requestInterceptor = api.interceptors.request.use( (config) => {
+        const requestInterceptor = api.interceptors.request.use((config) => {
             const token = localStorage.getItem("access_token");
             if (token && token !== "undefined" && token !== "null") {
                 config.headers.Authorization = `Bearer ${token}`;
@@ -33,6 +33,11 @@ export const AuthProvider = ({ children }) => {
             async (err) => {
                 const original = err.config;
 
+                // Prevent infinite loop for refresh endpoint itself
+                if (err.response?.status === 401 && original.url === "/v1/users/auth/refresh") {
+                    return Promise.reject(err);
+                }
+
                 // Don't retry if already retried
                 if (err.response?.status === 401 && !original._retry) {
                     original._retry = true;
@@ -44,7 +49,7 @@ export const AuthProvider = ({ children }) => {
                         const newToken = refreshRes.data.access_token;
 
                         if (!newToken) {
-                            console.warn("⚠ Refresh returned NO token");
+                            console.warn("Refresh returned NO token");
                             return Promise.reject(err);
                         }
 
@@ -133,15 +138,23 @@ export const AuthProvider = ({ children }) => {
         setAuthenticated(true)
     };
 
-    const logout = async () => {
+    const logout = async (id) => {
+        try {
+            await api.post(`/v1/users/logout/${id}`);
+
+        } catch (error) {
+            console.log("Logout error", error);
+        }
         localStorage.removeItem("access_token");
+
         setUser(null);
         setAuthenticated(false);
-        navigate("/login");
+        delete api.defaults.headers.common["Authorization"];
+        navigate("/");
     };
 
     return (
-        <AuthContext.Provider value={{ user, login,authenticated, logout, loading, api }}>
+        <AuthContext.Provider value={{ user, login, authenticated, logout, loading, api }}>
             {children}
         </AuthContext.Provider>
     );

@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
+import profile from "../assets/profile.png"
 import gsap from 'gsap'
 import { TextPlugin } from 'gsap/TextPlugin'
 import { Link, Route, Routes } from 'react-router-dom'
@@ -47,9 +48,9 @@ function Navbar() {
             <div className="hidden sm:flex items-center gap-10">
                 {user ? (
                     <div className={"relative"} ref={menuRef}>
-                        <img src={user.picture}
+                        <img src={user.picture || profile}
                             alt="profile"
-                            onClick={() => setMenuOpen(!menuOpen)}
+                            onClick={() => setMenuOpen(!menuOpen)}  
                             className={"w-8 h-8 rounded-full"}
                         />
 
@@ -58,7 +59,9 @@ function Navbar() {
                                 <div className={"absolute right-0 mt-2 w-40 bg-white shadow-md rounded-lg p-2"}>
                                     <Button variant={"default"}
                                         onClick={() => {
-                                            logout(user.sub);
+                                            logout(user.email);
+                                            console.log(user.email);
+                                            
                                             setMenuOpen(false)
                                         }
                                         }>Logout

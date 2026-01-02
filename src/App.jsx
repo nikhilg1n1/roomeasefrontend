@@ -18,6 +18,7 @@ import NotFoundPage from "@/Pages/NotFoundPage.jsx";
 import ServerErrorPage from "@/Pages/ServerErrorPage.jsx";
 import AuthenticationErrorPage from "@/Pages/AuthenticationErrorPage.jsx";
 import AuthorizationErrorPage from "@/Pages/AuthorizationErrorPage.jsx";
+import ForgotPassword from "./Components/ForgotPassword.jsx";
 
 
 function App() {
@@ -52,6 +53,9 @@ function App() {
                     <Route element={<AuthLayout/>}>
                         <Route path="/login" element={<LoginPage/>}/>
                         <Route path="/signup" element={<SignInPage/>}/>
+                        <Route path="/forgotPassword" element={<ForgotPassword/>}/>
+
+                        
                     </Route>
                 </Routes>
 

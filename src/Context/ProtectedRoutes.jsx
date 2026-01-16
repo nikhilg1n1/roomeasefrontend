@@ -1,12 +1,13 @@
 import {useContext} from "react"
 import {AuthContext} from "@/Context/AuthContext.jsx";
 import {Navigate} from "react-router-dom"
+import GlobalLoader from "@/Components/ui/GlobalLoader";
 
 
 function ProtectedRoutes({children}) {
     const {user,loading,authenticated} = useContext(AuthContext);
 
-    if(loading) return <p>loading...</p>
+    if(loading) return <GlobalLoader/>
     
     console.log("isAuthenticated -> ",authenticated);
     console.log("The user is -> " , user);

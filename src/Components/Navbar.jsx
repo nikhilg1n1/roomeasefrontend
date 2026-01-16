@@ -7,6 +7,7 @@ import ConfirmRoom from "../Pages/ListRoom.jsx";
 import { AuthContext } from '../Context/AuthContext.jsx'
 import { Button } from "@/Components/ui/button.jsx";
 import { useNavigate } from "react-router-dom";
+import GlobalLoader from "./ui/GlobalLoader";
 
 
 gsap.registerPlugin(TextPlugin);
@@ -37,12 +38,12 @@ function Navbar() {
 
     }, [menuOpen])
 
-    if (loading) return <div>Loading...</div>
+    if (loading) return <GlobalLoader/>
     return (
         <nav
             className="fixed w-full h-16 bg-black/50 backdrop-blur-sm px-4 sm:px-10 flex items-center justify-between z-40  mx-auto">
             {/* Logo */}
-            <div className="text-xl text-white font-bold">RoomEase</div>
+            <div className="text-xl text-white font-bold"><a href="/">RoomEase</a></div>
 
             {/* Desktop Menu */}
             <div className="hidden sm:flex items-center gap-10">

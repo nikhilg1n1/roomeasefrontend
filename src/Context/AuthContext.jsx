@@ -1,4 +1,5 @@
 import React, { createContext, useState, useRef, useEffect } from "react";
+import { LoaderCircle } from "lucide-react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -9,6 +10,8 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [authenticated, setAuthenticated] = useState(false);
     const [loading, setLoading] = useState(true);
+    const[globalLoading , setGlobalLoading] = useState(false);
+    const requestCount = useRef(0);
 
     const api = useRef(
         axios.create({
@@ -98,23 +101,44 @@ export const AuthProvider = ({ children }) => {
   // =========================
   useEffect(() => {
     const requestInterceptor = api.interceptors.request.use((config) => {
+      requestCount.current+=1;
+      setGlobalLoading(true);
       const token = localStorage.getItem("access_token");
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }
       return config;
-    });
+    },
+    (err)=>{
+      requestCount.current-=1;
+      if(requestCount.current ===0){
+        setGlobalLoading(false)
+
+      }
+      return Promise.reject(err)
+    }
+  );
 
     const responseInterceptor = api.interceptors.response.use(
-      (res) => res,
+      (res) => {
+          requestCount.current-=1;
+          if(requestCount.current === 0){
+            setGlobalLoading(false);
+          }
+          return res;
+      },
       async (error) => {
+        requestCount.current -=1;
+        if(requestCount.current === 0){
+          setGlobalLoading(false);
+        }
         const original = error.config;
 
         if (
           error.response?.status === 401 &&
           !original._retry &&
           !original.url.includes("/login") &&
-
+          !original.url.includes("/forgotpass") &&
           !original.url.includes("/auth/refresh")
         ) {
           original._retry = true;
@@ -253,7 +277,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ user,setUser, login, authenticated ,setAuthenticated, logout, loading, api }}>
+        <AuthContext.Provider value={{ user,setUser, login, authenticated ,setAuthenticated, logout, loading, api,globalLoading }}>
             {children}
         </AuthContext.Provider>
     );

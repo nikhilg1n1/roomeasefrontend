@@ -27,6 +27,7 @@ function ForgotPassword({className, ...props}) {
     const [passwordError, setPasswordError] = useState("");
     const[error,setError] = useState("")
     const[email,setEmail] = useState("");
+    const[success, setSucces] = useState("")
     const[password,setPassword] = useState("");
     const[confirmPassword,setConfirmPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false)
@@ -52,10 +53,11 @@ function ForgotPassword({className, ...props}) {
         e.preventDefault();
 
         try{
-            const res = await api.post("/v1/users/sendOtp",{
-                email
+            const res = await api.post("/v1/users/forgotpass",{
+                email,password
             });
-            setShowOtp(true)
+
+            setSucces("Password Changed successfully")
             
             
               
@@ -94,11 +96,11 @@ function ForgotPassword({className, ...props}) {
                                     value={email} 
                                     type="email" 
                                     onChange={(e) => setEmail(e.target.value)}
-                                    className={`${emailError ? "border-red-700 focus:ring-red-700": ""}`}
+                                    className={`${emailError ? "border-red-700 border-2 text-red-700  focus:ring-red-700": ""}`}
                                     placeholder="m@example.com"
                                      required />
                             </div>
-                            {emailError && <p className="text-red-700 text-sm">{emailError}</p>}
+                            {emailError && <p className="text-red-700 text-md">{emailError}</p>}
                             <div className="grid gap-2 relative">
                                 <div className="flex items-center">
                                     <Label htmlFor="newPassword">New Password</Label>
@@ -111,7 +113,7 @@ function ForgotPassword({className, ...props}) {
                                 <Input id="password" 
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                className={`${passwordError ? "border-red-700 focus:ring-red-700": ""}`}
+                                className={`${passwordError ? "border-red-700 border-2 text-red-700 focus:ring-red-700": ""}`}
 
                                 type={showPassword ? "text" : "password"} 
                                 required />
@@ -139,7 +141,7 @@ function ForgotPassword({className, ...props}) {
                                 <Input id="confirmPassword" 
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
-                                className={`${passwordError ? "border-red-700 focus:ring-red-700": ""}`}
+                                className={`${passwordError ? "border-red-700 border-2 focus:ring-red-700": ""}`}
                                 type={showConfirmPassword ? "text" : "password"} 
                                 required />
                                 <button
@@ -152,8 +154,10 @@ function ForgotPassword({className, ...props}) {
 
                             </div>
                             
-                            {passwordError && <p className="text-red-700 text-sm">{passwordError}</p>}
-                                {error && <p className="text-red-700 text-sm">{error}</p>}
+                            {passwordError && <p className="text-red-700 text-md">{passwordError}</p>}
+                                {error && <p className="text-red-700 text-md">{error}</p>}
+                                {success && <p className="text-green-700 text-md">{success}</p>}
+
                             <Button type="button" onClick={handleSignIn} className="w-full">
                                 Continue
                             </Button>

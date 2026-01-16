@@ -75,7 +75,7 @@ const RentRoom = () => {
         <div className="min-h-screen bg-slate-200 pt-16">
             {/* Search Bar */}
             <div className="bg-white lg:w-full md-w-1/2 sm:flex-row fixed  gap-4 items-center">
-                <SearchBar />
+                <SearchBar onSearch={setRoom} />
             </div>
 
             {/* Main Content */}

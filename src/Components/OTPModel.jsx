@@ -33,6 +33,8 @@ export default function OtpModel({email,password,onSuccess,onClose }) {
         console.log(res.data.access_token);
     
         localStorage.setItem("access_token",res.data.access_token)
+        // api.defaults.headers.common["Authorization"] = `Bearer ${res.data.access_token}`;
+
         onSuccess(res.data);
         }catch(e){
             console.log("error is :" , e);

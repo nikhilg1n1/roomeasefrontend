@@ -23,6 +23,7 @@ import { useContext } from "react";
 import { AuthContext } from "./Context/AuthContext.jsx";
 import GlobalLoader from "./Components/ui/GlobalLoader.jsx";
 import PaymentCard from "./Components/PaymentCard.jsx";
+import DashBoard from "./Pages/DashBoard.jsx";
 
 
 function App() {
@@ -55,6 +56,8 @@ function App() {
                         }/>
                     </Route>
                     <Route path={"/error/404"} element={<NotFoundPage/>}/>
+                    <Route path={"/dashboard"} element={<DashBoard/>}/>
+
                     <Route path={"/error/500"} element={<ServerErrorPage/>}/>
                     <Route path={"/error/auth"} element={<AuthenticationErrorPage/>}/>
                     <Route path={"/error/oauth"} element={<AuthorizationErrorPage/>}/>

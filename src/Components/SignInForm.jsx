@@ -21,8 +21,9 @@ import { useNavigate } from "react-router-dom"
 
 function SignInForm({ className, ...props }) {
     const { api, login } = useContext(AuthContext)
-    const navigate = useNavigate()
-    const [showOtp, setShowOtp] = useState(false)
+    const navigate = useNavigate();
+    const [showOtp, setShowOtp] = useState(false);
+    const[name,setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false)
@@ -80,6 +81,16 @@ function SignInForm({ className, ...props }) {
                 <CardContent>
                     <form onSubmit={handleSignIn}>
                         <div className="flex flex-col gap-6">
+                            <div className="grid gap-2">
+                                <Label htmlFor="name">Name</Label>
+                                <Input id="name"
+                                    value={name}
+                                    type="name"
+                                    onChange={(e) => setName(e.target.value)}
+                                    // className={`${emailError ? "border-red-700 focus:ring-red-700":""}`}
+                                    placeholder="Full name"
+                                    required />
+                            </div>
                             <div className="grid gap-2">
                                 <Label htmlFor="email">Email</Label>
                                 <Input id="email"

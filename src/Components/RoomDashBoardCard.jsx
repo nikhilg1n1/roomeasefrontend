@@ -2,14 +2,17 @@ import Button from "./Button";
 
 export default function RoomDashBoardCard({room}){
     return(
-        <div className="bg-white rounded-2xl hover:shadow-lg transition overflow-hidden">
+        <div className="bg-white rounded-2xl shadow-md hover:shadow-xl  transition overflow-hidden">
 
             {/* adding Room image */}
             <div className="h-48 bg-gray-200">
-                <img 
-                    src={room.image} 
-                    alt={room.title} 
-                    className=" h-full w-full object-cover" />
+                {room?.roomImages?.length > 0 && (
+            <img
+              src={`data:${room.roomImages[0].contentType};base64,${room.roomImages[0].roomImage}`}
+              alt="room"
+              className={"w-full h-full object-cover"}
+            />
+          )}
             </div>
             
             {/* Content */}
@@ -44,22 +47,22 @@ export default function RoomDashBoardCard({room}){
                     </div>
 
                     {/*Status*/}
-                    <StatusBagde status ={room.status}/>
+                    {/* <StatusBagde status ={room.status}/> */}
 
                     {/* Actions */}
                     <div className="flex gap-2 pt-2">
                         {room.rentPaid && (
-                            <Button size="sm" variant="outline">
+                            <Button  variant="outline">
                                 Send Remainder
                             </Button>
                         )}
                     </div>
                     {room.status === "RENTED" && (
-                        <Button size="sm" variant="secondary">
+                        <Button  variant="secondary">
                             Mark Vacant
                         </Button>
                     )}
-                    <Button size="sm" variant="default">
+                    <Button  variant="default">
                         Edit
                     </Button>
                 </div>

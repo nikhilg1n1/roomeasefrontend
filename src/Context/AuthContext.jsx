@@ -107,14 +107,12 @@ export const AuthProvider = ({ children }) => {
 
         const token = localStorage.getItem("access_token");
         if (token) {
-        //   config.headers.Authorization = `Bearer ${token}`;
-        //   console.log("2");
-        config.headers = {
-          ...config.headers,
-          Authorization: `Bearer ${token}`,
+          config.headers.Authorization = `Bearer ${token}`;
+          console.log("2");
+        // config.headers = {
+        //   ...config.headers,
+        //   Authorization: `Bearer ${token}`,
         };
-
-         }
         
         return config;
       },

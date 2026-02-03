@@ -28,6 +28,7 @@ function SignInForm({ className, ...props }) {
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false)
     const [emailError, setEmailError] = useState("");
+    const [userError,setUserError] = useState("");
     const [passwordError, setPasswordError] = useState("");
 
 
@@ -44,14 +45,18 @@ function SignInForm({ className, ...props }) {
         }
 
 
+
+
         e.preventDefault();
 
         try {
             const res = await api.post("/v1/users/sendOtp", {
                 email
             });
+            
             setShowOtp(true)
-
+            
+            
 
 
 
@@ -63,6 +68,10 @@ function SignInForm({ className, ...props }) {
             // console.log("Login Success",user);
 
         } catch (error) {
+            if(error.response?.status===400){
+                setUserError("User Already exists ..!")
+                return
+            }
             console.error("Otp sent Failed", error);
 
         }
@@ -97,11 +106,12 @@ function SignInForm({ className, ...props }) {
                                     value={email}
                                     type="email"
                                     onChange={(e) => setEmail(e.target.value)}
-                                    className={`${emailError ? "border-red-700 focus:ring-red-700":""}`}
+                                    className={`${emailError ? "border-red-700 border-2 focus:ring-red-700":""} ${userError ? "border-red-700 border-2 focus:bg-red-700":""}`}
                                     placeholder="m@example.com"
                                     required />
                             </div>
-                            {emailError && <p className="text-red-700 text-sm ">{emailError}</p>}
+                            {emailError && <p className="text-red-700 text-md ">{emailError}</p>}
+                            {userError && <p className="text-red-700 text-md ">{userError}</p>}
                             <div className="grid gap-2 relative">
                                 <div className="flex items-center">
                                     <Label htmlFor="password">Password</Label>
@@ -115,10 +125,10 @@ function SignInForm({ className, ...props }) {
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     type={showPassword ? "text" : "password"}
-                                    className={`${passwordError ? "border-red-700 text-sm focus:ring-red-700" : ""}`}
+                                    className={`${passwordError ? "border-red-700  border-2 text-md focus:ring-red-700" : ""}`}
                                     required />
                                 <button
-                                    type="button"
+                                    type="submit"
                                     onClick={() => setShowPassword(!showPassword)}
                                     className="absolute right-3 top-2/4 mt-4 -translate-y-1/2"
                                 >
@@ -127,7 +137,7 @@ function SignInForm({ className, ...props }) {
 
                             </div>
                             {passwordError && (
-                                <p className="text-red-700 text-sm">
+                                <p className="text-red-700 text-md">
                                     {passwordError}
                                 </p>
                             )}

@@ -6,8 +6,8 @@ import {Button} from "../Components/ui/button.jsx";
 
 function LandingPage2() {
     return (
-        <section className={"min-h-screen w-full flex flex-col mt-14 gap-10  items-center justify-center"}>
-            <div className={"w-[85%] h-[300px] flex items-center justify-between bg-[#212121] rounded-xl p-8 "}>
+        <section className={"min-h-screen w-full flex flex-col  gap-10  items-center justify-center"}>
+            <div className={"w-[85%] h-[200px] flex items-center justify-between bg-[#212121] rounded-xl p-8 "}>
                 <div className={""}>
                     <h1 className={"font-sans font-semibold text-4xl text-white"}>Take a look at our numbers</h1>
                     <h1 className={" font-sans pt-4 text-white text-lg"}>These Number are growing at tremendous

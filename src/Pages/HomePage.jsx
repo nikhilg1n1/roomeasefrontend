@@ -10,6 +10,7 @@ import { Button } from "../Components/ui/button.jsx";
 import { Link } from "react-router-dom";
 import api from "@/Constants/api.js";
 import { AuthContext } from "@/Context/AuthContext";
+import HomePageSearchBar from "@/Components/HomePageSearchBar";
 
 const HomePage = () => {
   const { user , roles} = useContext(AuthContext);
@@ -23,13 +24,13 @@ const HomePage = () => {
 
   return (
     <section className={"min-h-screen w-full"}>
-      <div className={"w-full h-[600px] flex items-center justify-center"}>
+      <div className={"w-full h-screen pt-16 flex flex-col items-center justify-center"}>
         <img
           src={heroImage}
           alt={"picture"}
           className={"object-cover object-center w-full h-full"}
         />
-        <div className="absolute w-full h-[600px] inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+        <div className="absolute w-full h-screen inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
 
         <h1 className="absolute top-40 text-center w-[1247px] justify-start text-[#212121] text-6xl font-semibold font-['family sans'] leading-[60px]">
           Skip the Search. Start Living. Find PGs and Rooms That Feel Like Home.
@@ -37,8 +38,11 @@ const HomePage = () => {
         <h1 className="absolute top-[300px] text-center w-[1247px] justify-start text-[#212121] text-2xl font-semibold font-['family sans'] leading-[60px]">
           Compare, connect, and book directly with trusted PG & hostel owners.
         </h1>
+        <div className="absolute top-[400px]">
+          <HomePageSearchBar/>
+        </div>
         <div
-          className={`absolute top-[400px] flex items-center gap-20 ${isOwner && (isUser || roles.length === 0) ? "justify-center" : "justify-between"}`}
+          className={`absolute z-20 top-[600px] flex items-center gap-20 ${isOwner && (isUser || roles.length === 0) ? "justify-center" : "justify-between"}`}
         >
           {isOwner && (
             <Button
@@ -66,12 +70,12 @@ const HomePage = () => {
           )}
         </div>
       </div>
-      <div
+      {/* <div
         className={
-          "w-full h-auto gap-40  flex items-center justify-center pt-20"
+          "w-full absolute h-60 gap-40 top-[500px] bg-white flex items-center justify-center pt-20"
         }
       >
-        <IconText
+        {/* <IconText
           icon={wideRangeIcon}
           headerText={"Wide range of rooms"}
           bodyText={"We offer rooms to students and working professional."}
@@ -85,8 +89,11 @@ const HomePage = () => {
           icon={TrustIcon}
           headerText={"Trusted by thousands"}
           bodyText={"Successfully provided the service to thousands people."}
-        />
-      </div>
+        /> */}
+      {/* </div> */} 
+
+      
+
     </section>
   );
 };

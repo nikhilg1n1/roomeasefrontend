@@ -4,8 +4,10 @@ import { Button } from "./ui/button";
 import { AuthContext } from "@/Context/AuthContext";
 import { ImageOff } from "lucide-react";
 import { useDebounce } from "@/Utilities/UseDebounce";
+import { useNavigate } from "react-router-dom";
 
-function SearchBar({ onSearch }) {
+
+function HomePageSearchBar() {
   const [query, setQuery] = useState("");
   const dropdownRef = useRef(null);
   const { api } = useContext(AuthContext);
@@ -13,7 +15,7 @@ function SearchBar({ onSearch }) {
   const [showDropDown, setShowDropDown] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
   const debouncedQuery = useDebounce(query, 400);
-
+  const navigate = useNavigate();
   // useEffect(() => {
   //     if (!query.trim) return;
   //     const timer = setTimeout(() => {
@@ -39,7 +41,14 @@ function SearchBar({ onSearch }) {
         setSuggestions(res.data || []);
         setShowDropDown(true);
 
-        onSearch(res.data);
+        const roomId = res.data.roomId;
+        const roomDescriptions = (roomId) =>{api.get(`/v1/description/${roomId}`)
+        .then((res)=>{
+            console.log(res);
+        })}
+
+
+        onSearch(r.data);
       } catch (err) {
         console.log("Search Error", err);
       }
@@ -70,7 +79,7 @@ function SearchBar({ onSearch }) {
       });
       console.log("Searched rooms ->", res.data);
 
-      onSearch(res.data);
+      // onSearch(res.data);
       setShowDropDown(false)
     } catch (err) {
       console.log("Search Error", err);
@@ -97,8 +106,11 @@ function SearchBar({ onSearch }) {
     if(e.key === "Enter"){
         if(activeIndex >= 0){
             const selected = suggestions[activeIndex];
-            setQuery(selected.address);
-            handleSearch(selected.address);
+            navigate(`/description/${selected.roomId}`);
+            setShowDropDown(false);
+
+            // setQuery(selected.address);
+            // handleSearch(selected.address);
         }else{
             handleSearch();
         }
@@ -120,46 +132,51 @@ function SearchBar({ onSearch }) {
 
 
   return (
-    <div className={"rounded-2xl flex gap-8 items-center p-4"} ref={dropdownRef}>
+    <div className={"rounded-full h-14 lg:w-[800px]  border-gray-600 md:w-[300px] flex gap-8 items-center p-4"} ref={dropdownRef}>
       <div
         className={
-          "w-[762px] h-[48px] bg-[#E2E8F0] flex items-center rounded-xl "
+          "w-full h-[72px] bg-white border2 border-gray-800  flex items-center rounded-full "
         }
       >
         <input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder={"Search Rooms near you"}
+          placeholder={"Search rooms near you"}
           className={
-            "text-[#212121] pl-4 rounded-lg bg-[#E2E8F0] text-lg focus:outline-none focus:ring-0 focus:border-transparent  w-full h-full"
+            "text-[#212121] pl-12 rounded-full bg-white border-r-gray-500  text-xl focus:outline-none focus:ring-0 focus:border-transparent  w-full h-full"
           }
         />
       </div>
-      <Button
+      {/* <Button
         variant={"default"}
         onClick={() =>handleSearch()}
         className="h-[48px] rounded-xl "
       >
         Search
-      </Button>
+      </Button> */}
 
       {/* Suggestions Dropdown */}
-      {showDropDown  && suggestions.length > 0  && (
+      {showDropDown  && suggestions.length >0  && (
         <div className="absolute top-[70px] left-4 w-[762px] bg-white shadow-lg rounded-xl z-40 border">
             {suggestions.map((item,index) =>(
                 <div 
-                    key={index}
+                    key={item.roomId}
                     onClick={()=>{
-                        setQuery( item.city || item.address);
-                        handleSearch(item.city || item.address);
-                        console.log("Address is -> ", item.address);
+                        // setQuery( item.city || item.address);
+                        // handleSearch(item.city || item.address);
+                        // console.log("Address is -> ", item.address);
+
+                        setShowDropDown(false);
+                        navigate(`/description/${item.roomId}`);
+                        
+                        
                         
                     }}
                     
                     
-                    className={`p-3 cursor-pointer hover: rounded-xl ${
-                        index === activeIndex ? "bg-slate-100":"hover:bg-gray-100"}`}
+                    className={`p-3 cursor-pointer border-b-2  ${
+                        index === activeIndex ? "bg-gray-300":"hover:bg-gray-"}`}
                 >
                   {console.log("index is ->",index)}
 
@@ -170,12 +187,11 @@ function SearchBar({ onSearch }) {
 
                     </div>
                     {item.city && (
-                        <div className="text-sm text-yellow-500">{item.city}</div>
+                        <div className="text-sm text-gray-500">{item.city}</div>
                     )}
                     {item.address && (
-                        <div className="text-sm text-red-400">{item.address}</div>
+                        <div className="text-sm text-gray-500">{item.address}</div>
                     )}
-                    <hr className=""></hr>
                 </div>
             ))}
         </div>
@@ -183,4 +199,4 @@ function SearchBar({ onSearch }) {
     </div>
   );
 }
-export default SearchBar;
+export default HomePageSearchBar;

@@ -1,8 +1,8 @@
-import Button from "./Button";
+import { Button } from "@/Components/ui/button.jsx";
 
 export default function RoomDashBoardCard({room}){
     return(
-        <div className="bg-white rounded-2xl shadow-md hover:shadow-xl  transition overflow-hidden">
+        <div className="bg-white rounded-2xl shadow-md hover:shadow-xl border-[2px] border-neutral-400 transition overflow-hidden">
 
             {/* adding Room image */}
             <div className="h-48 bg-gray-200">
@@ -50,21 +50,23 @@ export default function RoomDashBoardCard({room}){
                     {/* <StatusBagde status ={room.status}/> */}
 
                     {/* Actions */}
-                    <div className="flex gap-2 pt-2">
+                    <div className="flex gap-2 justify-between pt-2">
                         {room.rentPaid && (
-                            <Button  variant="outline">
+                            <Button className={"h-8 w-40"} variant="outline">
                                 Send Remainder
                             </Button>
                         )}
-                    </div>
-                    {room.status === "RENTED" && (
-                        <Button  variant="secondary">
+
+                        {room.status === "RENTED" && (
+                        <Button variant="secondary">
                             Mark Vacant
                         </Button>
                     )}
-                    <Button  variant="default">
+                    <Button  variant="default" className="w-20">
                         Edit
                     </Button>
+                    </div>
+                    
                 </div>
 
 

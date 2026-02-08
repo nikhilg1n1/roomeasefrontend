@@ -1,21 +1,26 @@
-import React from 'react'
-import HomePage from "./HomePage.jsx";
-import LandingPage2 from "./LandingPage2.jsx";
-import LandingPage3 from "./LandingPage3.jsx";
-import Footer from "./Footer.jsx";
-import Navbar from "@/Components/Navbar.jsx";
+import Navbar from "@/Components/Navbar";
+import HomePage from "./HomePage";
+import LandingPage2 from "./LandingPage2";
+import LandingPage3 from "./LandingPage3";
+import Footer from "./Footer";
 
 function LandingPage() {
-    return (
-        <div className={"w-full flex flex-col"}>
-            <Navbar/>
-            <HomePage/>
-            <LandingPage2/>
-            <LandingPage3/>
-            <Footer/>
-        </div>
+  return (
+    <div className="w-full min-h-screen flex flex-col bg-gray-50">
+      
+      {/* Sticky Navbar */}
+      <div className="sticky top-0 z-50">
+        <Navbar />
+      </div>
 
+      {/* Main Content with consistent spacing */}
+      <main className="flex flex-col gap-20">
+        <HomePage />
+        <LandingPage2 />
+        <LandingPage3 />
+      </main>
 
-    )
-}
-export default LandingPage
+      <Footer />
+    </div>
+  )
+} export default LandingPage

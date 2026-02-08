@@ -2,9 +2,10 @@ import {Button} from "@/Components/ui/button.jsx";
 
 function PreviousButton({step,setStep}){
     return(
-        <Button varient = "default" 
+        <Button variant = "default" type = "button"
             onClick={()=>{
-                if (step > 0 ) setStep(step -1)
+            
+                if (step > 0) setStep(step -1)
 
             }}>
                 Previous

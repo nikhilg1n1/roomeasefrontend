@@ -6,7 +6,7 @@ import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
 
 
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {useForm} from "react-hook-form";
 import PreviousButton from "./PreviousButton";
 import { AuthContext } from "@/Context/AuthContext";
@@ -21,6 +21,9 @@ function SteponeForm({step,setStep,formDataState,setFormDataState}) {
     const roomData = dataOfForm[step];
     const navigate  = useNavigate();
 
+    // useEffect(()=>{
+    //     reset(formDataState)
+    // },[step])
 
     const onSubmit = async (data) => {
         console.log("Form Data:", data);
@@ -130,8 +133,8 @@ function SteponeForm({step,setStep,formDataState,setFormDataState}) {
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="w-full  flex justify-center items-center py-12">
             <div
-                className='bg-gray-100 rounded-xl flex flex-col justify-start items-center p-8 gap-8  w-[80%] md:w-[3/4] sm:w-[1/4]'>
-                <h1 className='text-black font-sans font-semibold text-2xl md:text-xl  '>{roomData.header}</h1>
+                className='bg-gray-200 rounded-xl flex flex-col justify-start items-center p-8 gap-8  w-[80%] md:w-[3/4] sm:w-[1/4]'>
+                <h1 className='text-black font-sans font-semibold  md:text-2xl '>{roomData.header}</h1>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl justify-items-center">
                     {
                         roomData.fields.map((field, index) => (
@@ -154,6 +157,7 @@ function SteponeForm({step,setStep,formDataState,setFormDataState}) {
                 <div className="flex gap-96">
                     {
                         step === 0 ? "" :<PreviousButton step={step} setStep={setStep}></PreviousButton>
+                                                
 
                     }
                     <NextButton step={step} setStep={setStep} totalSteps={dataOfForm.length}/>

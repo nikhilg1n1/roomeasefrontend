@@ -132,6 +132,9 @@ function RoomDescription() {
               value={room.attachedWashroom ? "yes" : "No"}
             />
             <Detail label="City" value={room.city} />
+            <Detail label="Address" value={room.address} />
+
+
             <Detail label="Available From" value={room.availableDate} />
             <Detail label="Balcony" value={room.balcony ? "Yes" : "No"} />
           </div>
@@ -173,16 +176,23 @@ function RoomDescription() {
           </div>
         </div>
       </div>
-      <div className="space-y-6">
-        {room && <ReviewList roomId={room.roomId} />}
-        {console.log("Room Id for Review List ", roomId)}
-        {authenticated && (
-          <ReviewForm
-            roomId={room.roomId}
-            onReviewAdded={() => window.location.reload()}
-          />
-        )}
-      </div>
+      {/* SAME MAX WIDTH CONTAINER */}
+<div className="max-w-6xl mx-auto mt-8">
+  <div className="lg:col-span-2 space-y-6">
+
+    {room && (
+      <ReviewList roomId={room.roomId} />
+    )}
+
+    {authenticated && (
+      <ReviewForm
+        roomId={room.roomId}
+        onReviewAdded={() => window.location.reload()}
+      />
+    )}
+
+  </div>
+</div>
       <PaymentCard
         open={showPaymentCard}
         onClose={() => setShowPaymentCard(false)}

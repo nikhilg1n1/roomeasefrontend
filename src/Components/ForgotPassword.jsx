@@ -5,11 +5,11 @@ import {
     CardDescription,
     CardHeader,
     CardTitle,
-  } from "@/components/ui/card"
-  import { Label } from "@/components/ui/label"
+  } from "@/Components/ui/card"
+  import { Label } from "@/Components/ui/label"
   import{isValidEmail} from "../Utilities/EmailValid"
-  import { Input } from "@/components/ui/input"
-  import { Button } from "@/components/ui/button"
+  import { Input } from "@/Components/ui/input"
+  import { Button } from "@/Components/ui/button"
   import { Eye, EyeOff } from "lucide-react"
   import { cn } from "@/lib/utils"
   import googlelogo from "../assets/search.png"

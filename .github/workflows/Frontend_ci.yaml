@@ -12,8 +12,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      VITE_API_URL:${{ secrets.VITE_API_URL }}
-      VITE_RAZORPAY_KEY_ID:${{ secrets.VITE_RAZORPAY_KEY_ID }}
+      VITE_API_URL: ${{ secrets.VITE_API_URL }}
+      VITE_RAZORPAY_KEY_ID: ${{ secrets.VITE_RAZORPAY_KEY_ID }}
     
     steps:
       - name: Checkout code

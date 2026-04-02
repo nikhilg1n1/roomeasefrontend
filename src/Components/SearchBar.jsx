@@ -4,6 +4,8 @@ import { Button } from "./ui/button";
 import { AuthContext } from "@/Context/AuthContext";
 import { ImageOff } from "lucide-react";
 import { useDebounce } from "@/Utilities/UseDebounce";
+import { useNavigate } from "react-router-dom";
+
 
 function SearchBar({ onSearch }) {
   const [query, setQuery] = useState("");
@@ -13,6 +15,7 @@ function SearchBar({ onSearch }) {
   const [showDropDown, setShowDropDown] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
   const debouncedQuery = useDebounce(query, 400);
+  const navigate = useNavigate();
 
   // useEffect(() => {
   //     if (!query.trim) return;
@@ -97,8 +100,10 @@ function SearchBar({ onSearch }) {
     if(e.key === "Enter"){
         if(activeIndex >= 0){
             const selected = suggestions[activeIndex];
-            setQuery(selected.address);
-            handleSearch(selected.address);
+            // setQuery(selected.address);
+            // handleSearch(selected.address);.
+            navigate(`/description/${selected.roomId}`);
+            setShowDropDown(false);
         }else{
             handleSearch();
         }
@@ -146,20 +151,22 @@ function SearchBar({ onSearch }) {
 
       {/* Suggestions Dropdown */}
       {showDropDown  && suggestions.length > 0  && (
-        <div className="absolute top-[70px] left-4 w-[762px] bg-white shadow-lg rounded-xl z-40 border">
+        <div className="absolute top-[70px] left-4 w-[762px] bg-white shadow-lg rounded-xl z-40 border ">
             {suggestions.map((item,index) =>(
                 <div 
-                    key={index}
+                    key={item.roomId}
                     onClick={()=>{
-                        setQuery( item.city || item.address);
-                        handleSearch(item.city || item.address);
-                        console.log("Address is -> ", item.address);
+                    //     setQuery( item.city || item.address);
+                    //     handleSearch(item.city || item.address);
+                    //     console.log("Address is -> ", item.address);
+                    navigate(`/description/${item.roomId}`);
+                    setShowDropDown(false);
                         
                     }}
                     
                     
-                    className={`p-3 cursor-pointer hover: rounded-xl ${
-                        index === activeIndex ? "bg-slate-100":"hover:bg-gray-100"}`}
+                    className={`p-3 cursor-pointer border-b-2 ${
+                        index === activeIndex ? "bg-gray-300":"hover:bg-gray-200"}`}
                 >
                   {console.log("index is ->",index)}
 
@@ -170,12 +177,11 @@ function SearchBar({ onSearch }) {
 
                     </div>
                     {item.city && (
-                        <div className="text-sm text-yellow-500">{item.city}</div>
+                        <div className="text-sm text-gray-500">{item.city}</div>
                     )}
                     {item.address && (
-                        <div className="text-sm text-red-400">{item.address}</div>
+                        <div className="text-sm text-gray-500">{item.address}</div>
                     )}
-                    <hr className=""></hr>
                 </div>
             ))}
         </div>

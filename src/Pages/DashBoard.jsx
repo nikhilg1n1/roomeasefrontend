@@ -26,8 +26,6 @@ function DashBoard(){
 
   },[])
 
-  
-
   return (
     <div className={"min-h-screen pt-20 bg-slate-100 p-6"}>
         <h1 className='text-3xl font-bold mb-6'>My Rooms</h1>

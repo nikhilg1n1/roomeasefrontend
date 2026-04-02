@@ -176,7 +176,7 @@ function HomePageSearchBar() {
                     
                     
                     className={`p-3 cursor-pointer border-b-2  ${
-                        index === activeIndex ? "bg-gray-300":"hover:bg-gray-"}`}
+                        index === activeIndex ? "bg-gray-300":"hover:bg-gray-200"}`}
                 >
                   {console.log("index is ->",index)}
 

@@ -42,7 +42,7 @@ const HomePage = () => {
           <HomePageSearchBar/>
         </div>
         <div
-          className={`absolute z-20 top-[600px] flex items-center gap-20 ${isOwner && (isUser || roles.length === 0) ? "justify-center" : "justify-between"}`}
+          className={`absolute z-20 top-[550px] flex items-center gap-20 ${isOwner && (isUser || roles.length === 0) ? "justify-center" : "justify-between"}`}
         >
           {isOwner && (
             <Button

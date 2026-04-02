@@ -1,7 +1,7 @@
 import React from 'react'
 // import logo from '../../public/nuralogo.svg'
-import {footerInfo} from '../Constants/index.js'
-import FooterInfo from "../Components/FooterInfo.jsx";
+import {footerInfo} from '../constants/index.js'
+import FooterInfo from "../components/FooterInfo.jsx";
 
 
 function Footer() {

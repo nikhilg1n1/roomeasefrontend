@@ -1,4 +1,4 @@
-import { steps } from "@/Constants/index.js";
+import { steps } from "@/constants/index.js";
 
 function ProgressBar({ step, totalStep }) {
   // const [step, setStep] = useState(1); // Track current form step

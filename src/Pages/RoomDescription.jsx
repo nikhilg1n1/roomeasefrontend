@@ -1,15 +1,15 @@
 import { useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import api from "@/Constants/api.js";
-import { Detail } from "../Utilities/Detail.jsx";
-import { Amenities } from "../Utilities/Amenity.jsx";
-import { Button } from "@/Components/ui/button.jsx";
-import { AuthContext } from "@/Context/AuthContext.jsx";
-import { loadRazorpay } from "@/Utilities/paymentUtility.js";
+import api from "@/constants/api.js";
+import { Detail } from "../utilities/Detail.jsx";
+import { Amenities } from "../utilities/Amenity.jsx";
+import { Button } from "@/components/ui/button.jsx";
+import { AuthContext } from "@/context/AuthContext.jsx";
+import { loadRazorpay } from "@/utilities/paymentUtility.js";
 import { Currency } from "lucide-react";
-import PaymentCard from "@/Components/PaymentCard.jsx";
-import ReviewList from "@/Components/Review/ReviewList.jsx";
-import ReviewForm from "@/Components/Review/ReviewForm.jsx";
+import PaymentCard from "@/components/PaymentCard.jsx";
+import ReviewList from "@/components/Review/ReviewList.jsx";
+import ReviewForm from "@/components/Review/ReviewForm.jsx";
 
 function RoomDescription() {
   const { roomId } = useParams();

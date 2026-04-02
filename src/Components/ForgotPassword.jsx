@@ -5,16 +5,16 @@ import {
     CardDescription,
     CardHeader,
     CardTitle,
-  } from "@/Components/ui/card"
-  import { Label } from "@/Components/ui/label"
-  import{isValidEmail} from "../Utilities/EmailValid"
-  import { Input } from "@/Components/ui/input"
-  import { Button } from "@/Components/ui/button"
+  } from "@/components/ui/card"
+  import { Label } from "@/components/ui/label"
+  import{isValidEmail} from "../utilities/EmailValid"
+  import { Input } from "@/components/ui/input"
+  import { Button } from "@/components/ui/button"
   import { Eye, EyeOff } from "lucide-react"
   import { cn } from "@/lib/utils"
   import googlelogo from "../assets/search.png"
 import { useContext } from "react"
-import { AuthContext } from "@/Context/AuthContext"
+import { AuthContext } from "@/context/AuthContext"
 import OtpModel from "./OTPModel"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"

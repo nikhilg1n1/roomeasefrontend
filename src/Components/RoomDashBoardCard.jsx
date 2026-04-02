@@ -1,4 +1,4 @@
-import { Button } from "@/Components/ui/button.jsx";
+import { Button } from "@/components/ui/button.jsx";
 
 export default function RoomDashBoardCard({room}){
     return(

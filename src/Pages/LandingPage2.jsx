@@ -1,7 +1,7 @@
 import React from 'react'
-import NumberComponent from "../Components/NumberComponent.jsx";
+import NumberComponent from "../components/NumberComponent.jsx";
 import hero2 from '../assets/heroImage2.jpg'
-import {Button} from "../Components/ui/button.jsx";
+import {Button} from "../components/ui/button.jsx";
 
 
 function LandingPage2() {

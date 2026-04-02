@@ -1,4 +1,4 @@
-import { AuthContext } from "@/Context/AuthContext";
+import { AuthContext } from "@/context/AuthContext";
 import { clsx } from "clsx";
 import { useContext } from "react";
 import { twMerge } from "tailwind-merge"

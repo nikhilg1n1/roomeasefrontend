@@ -1,4 +1,4 @@
-import Button from "@/Components/Button.jsx";
+import Button from "@/components/Button.jsx";
 
 function successPage(){
     return(

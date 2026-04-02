@@ -1,7 +1,7 @@
 import {useContext} from "react"
-import {AuthContext} from "@/Context/AuthContext.jsx";
+import {AuthContext} from "@/context/AuthContext.jsx";
 import {Navigate} from "react-router-dom"
-import GlobalLoader from "@/Components/ui/GlobalLoader";
+import GlobalLoader from "@/components/ui/GlobalLoader";
 
 
 function ProtectedRoutes({children}) {

@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import searchSvg from "../assets/Search.svg";
 import { Button } from "./ui/button";
-import { AuthContext } from "@/Context/AuthContext";
+import { AuthContext } from "@/context/AuthContext";
 import { ImageOff } from "lucide-react";
-import { useDebounce } from "@/Utilities/UseDebounce";
+import { useDebounce } from "@/utilities/UseDebounce";
 import { useNavigate } from "react-router-dom";
 
 

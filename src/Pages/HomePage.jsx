@@ -1,16 +1,16 @@
 import React, { useContext, useEffect } from "react";
 import heroImage from "../assets/heroImage.jpg";
-import SearchBar from "../Components/SearchBar.jsx";
-import IconText from "../Components/IconText.jsx";
+import SearchBar from "../components/SearchBar.jsx";
+import IconText from "../components/IconText.jsx";
 import wideRangeIcon from "../assets/wideRangeOfHome.svg";
 import listYourRoomsIcon from "../assets/listYourRooms.svg";
 import TrustIcon from "../assets/Trust.svg";
-import Navbar from "../Components/Navbar.jsx";
-import { Button } from "../Components/ui/button.jsx";
+import Navbar from "../components/Navbar.jsx";
+import { Button } from "../components/ui/button.jsx";
 import { Link } from "react-router-dom";
-import api from "@/Constants/api.js";
-import { AuthContext } from "@/Context/AuthContext";
-import HomePageSearchBar from "@/Components/HomePageSearchBar";
+import api from "@/constants/api.js";
+import { AuthContext } from "@/context/AuthContext";
+import HomePageSearchBar from "@/components/HomePageSearchBar";
 
 const HomePage = () => {
   const { user , roles} = useContext(AuthContext);

@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
-import { steps } from "../Constants/index";
-import SteponeForm from "@/Components/SteponeForm";
-import ProgressBar from "@/Components/ProgressBar.jsx";
-import { AuthContext } from "@/Context/AuthContext";
+import { steps } from "../constants/index";
+import SteponeForm from "@/components/SteponeForm";
+import ProgressBar from "@/components/ProgressBar.jsx";
+import { AuthContext } from "@/context/AuthContext";
 
 const ListRoom = () => {
   const { api } = useContext(AuthContext);

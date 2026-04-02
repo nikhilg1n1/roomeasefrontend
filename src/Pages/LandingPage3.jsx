@@ -1,8 +1,8 @@
 import React from "react";
 import { useContext } from "react";
 import roomOwner from "../assets/roomowner.jpg";
-import { Button } from "../Components/ui/button.jsx";
-import { AuthContext } from "@/Context/AuthContext";
+import { Button } from "../components/ui/button.jsx";
+import { AuthContext } from "@/context/AuthContext";
 
 function LandingPage3() {
   const { user, roles } = useContext(AuthContext);

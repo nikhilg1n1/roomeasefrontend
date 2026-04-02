@@ -1,7 +1,7 @@
 import {InputWithLabel} from "./InputWithLabel"
-import {dataOfForm} from '../Constants/index.js'
-import {Button} from "@/Components/ui/button.jsx";
-import NextButton from "@/Components/NextButton.jsx";
+import {dataOfForm} from '../constants/index.js'
+import {Button} from "@/components/ui/button.jsx";
+import NextButton from "@/components/NextButton.jsx";
 import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
 
@@ -9,7 +9,7 @@ import {useNavigate} from 'react-router-dom'
 import React, {useContext, useEffect, useState} from "react";
 import {useForm} from "react-hook-form";
 import PreviousButton from "./PreviousButton";
-import { AuthContext } from "@/Context/AuthContext";
+import { AuthContext } from "@/context/AuthContext";
 
 
 function SteponeForm({step,setStep,formDataState,setFormDataState}) {

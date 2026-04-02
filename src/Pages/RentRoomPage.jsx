@@ -1,15 +1,15 @@
 import React, {useContext, useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 
-import { Slider } from "@/Components/ui/slider.jsx";
-import PriceRangeSlider from "@/Components/ui/PriceRangeSlider.jsx";
-import SearchBar from "@/Components/SearchBar.jsx";
-import { Button } from "@/Components/ui/button";
-import {Base_Url} from "@/Constants/api.js";
+import { Slider } from "@/components/ui/slider.jsx";
+import PriceRangeSlider from "@/components/ui/PriceRangeSlider.jsx";
+import SearchBar from "@/components/SearchBar.jsx";
+import { Button } from "@/components/ui/button";
+import {Base_Url} from "@/constants/api.js";
 // import api from "@/Constants/api.js";
-import { tooggleValue } from "@/Utilities/Utility";
-import roomDescription from "@/Pages/RoomDescription.jsx";
-import {AuthContext} from "@/Context/AuthContext.jsx";
+import { tooggleValue } from "@/utilities/Utility";
+import roomDescription from "@/pages/RoomDescription.jsx";
+import {AuthContext} from "@/context/AuthContext.jsx";
 
 
 

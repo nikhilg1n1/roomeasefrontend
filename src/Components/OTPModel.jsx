@@ -6,12 +6,12 @@ import {
     DialogTitle
 
 } from "./ui/dialog";
-import { AuthContext } from "@/Context/AuthContext";
+import { AuthContext } from "@/context/AuthContext";
 
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { AlignRight } from "lucide-react";
-import api from "@/Constants/api";
+import api from "@/constants/api";
 import { useContext } from "react";
 
 export default function OtpModel({email,password,onSuccess,onClose }) {

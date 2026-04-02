@@ -1,21 +1,21 @@
 import { cn } from "@/lib/utils"
-import { Button } from "@/Components/ui/button"
+import { Button } from "@/components/ui/button"
 // import {zodResolver} from "@hookform/resolvers/zod"
 import axios from "axios"
 import { Eye, EyeOff } from "lucide-react"
 import { useContext, useState } from "react";
 import googlelogo from "../assets/search.png"
 import { useNavigate } from "react-router-dom"
-import { AuthContext } from "@/Context/AuthContext";
+import { AuthContext } from "@/context/AuthContext";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/Components/ui/card"
-import { Input } from "@/Components/ui/input"
-import { Label } from "@/Components/ui/label"
+} from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import { Link } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
 import { set } from "react-hook-form";

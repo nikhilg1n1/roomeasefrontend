@@ -1,4 +1,4 @@
-import {Button} from "@/Components/ui/button.jsx";
+import {Button} from "@/components/ui/button.jsx";
 
 function PreviousButton({step,setStep}){
     return(

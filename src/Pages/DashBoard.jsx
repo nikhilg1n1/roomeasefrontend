@@ -1,5 +1,5 @@
-import RoomDashBoardCard from '@/Components/RoomDashBoardCard'
-import { AuthContext } from '@/Context/AuthContext'
+import RoomDashBoardCard from '@/components/RoomDashBoardCard'
+import { AuthContext } from '@/context/AuthContext'
 import { Ribbon } from 'lucide-react'
 import React, { useContext } from 'react'
 import { useEffect } from 'react'

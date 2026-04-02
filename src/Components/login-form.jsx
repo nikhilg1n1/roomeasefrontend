@@ -14,7 +14,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/Components/ui/card"
-import { Input } from "@/cardomponents/ui/input"
+import { Input } from "@/Components/ui/input"
 import { Label } from "@/Components/ui/label"
 import { Link } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";

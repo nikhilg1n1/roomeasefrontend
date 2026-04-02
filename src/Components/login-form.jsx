@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/Components/ui/button"
 // import {zodResolver} from "@hookform/resolvers/zod"
 import axios from "axios"
 import { Eye, EyeOff } from "lucide-react"
@@ -13,9 +13,9 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+} from "@/Components/ui/card"
+import { Input } from "@/cardomponents/ui/input"
+import { Label } from "@/Components/ui/label"
 import { Link } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
 import { set } from "react-hook-form";

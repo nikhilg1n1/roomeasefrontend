@@ -1,19 +1,13 @@
 export  const footerInfo=[
     {   id:1,
-        label:"Shop",
-        text1:"NuraTrue Pro",
-        text2:"Audio Transmitter",
-        text3:"NuraTrue",
-        text4:"NuraBuds",
-        text5:"Nuraphone",
-        text6:"NuraLoop",
-        text7:"Accessories",
-        text8:"Subscription"
+        label:"Head Office",
+        text1:"Pune"
+        
     },
     {   id:2,
         label: "INFO",
-        text1:"Why Nura?",
-        text2:"Shipping",
+        text1:"Why RoomEase?",
+        text2:"Payments",
         text3:"Returns",
         text4:"Warranty",
         text5:"Patents"

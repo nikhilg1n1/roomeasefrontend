@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
 
   const api = useRef(
     axios.create({
-      baseURL: "http://localhost:8080",
+      baseURL: "https://roomease-ua99.onrender.com",
       withCredentials: true,
     }),
   ).current;

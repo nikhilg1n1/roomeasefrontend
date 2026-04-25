@@ -109,11 +109,7 @@ export const AuthProvider = ({ children }) => {
         if (token) {
           config.headers.Authorization = `Bearer ${token}`;
           console.log("2");
-        // config.headers = {
-        //   ...config.headers,
-        //   Authorization: `Bearer ${token}`,
-        };
-        
+        }
         return config;
       },
       (err) => {

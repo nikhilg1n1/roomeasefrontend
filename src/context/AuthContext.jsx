@@ -18,8 +18,11 @@ export const AuthProvider = ({ children }) => {
     axios.create({
       baseURL: import.meta.env.VITE_API_URL,
       withCredentials: true,
+            
     }),
   ).current;
+  console.log(baseURL);
+
 
   // //Attach token to every request
   // useEffect(() => {
@@ -98,6 +101,7 @@ export const AuthProvider = ({ children }) => {
   // =========================
   // AXIOS INTERCEPTORS
   // =========================
+
   useEffect(() => {
     const requestInterceptor = api.interceptors.request.use(
       (config) => {

@@ -14,12 +14,15 @@ export const AuthProvider = ({ children }) => {
   const [globalLoading, setGlobalLoading] = useState(false);
   const requestCount = useRef(0);
 
+  const baseURL = import.meta.env.VITE_API_URL || "https://roomease-ua99.onrender.com";
+
   const api = useRef(
     axios.create({
-      baseURL: import.meta.env.VITE_API_URL || "https://roomease-ua99.onrender.com",
+      baseURL: baseURL,
       withCredentials: true,
             
     }),
+
   ).current;
   console.log(baseURL);
 

@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
 
   const api = useRef(
     axios.create({
-      baseURL: import.meta.env.VITE_API_URL,
+      baseURL: "https://roomease-ua99.onrender.com",
       withCredentials: true,
             
     }),

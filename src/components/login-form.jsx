@@ -67,6 +67,9 @@ export function LoginForm({
     }
     catch (err) {
       console.log("Login failed ->", err);
+      console.log("Status:",err.response?.status);
+      console.log("DATA",err.response?.data);
+      
       if (err.response?.data?.message) {
         setError("Something went Wrong. Please try again later")
       } else {
